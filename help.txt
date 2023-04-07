@@ -1,0 +1,24 @@
+sudo npx create-react-app todo-app
+
+npm uninstall -g create-react-app
+npx clear-npx-cache
+
+1) npm start 		--- run app in development mod
+2) ^C - stop app
+
+3) npm run build    --- create production build
+4) npm install --save react-router-dom    	--- Add a dependency to your project
+
+
+
+
+
+
+troubleshooting-Поиск неисправностей
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M dev
+git remote add origin git@github.com:panaram1ks/todo-app.git
+git push -u origin dev
