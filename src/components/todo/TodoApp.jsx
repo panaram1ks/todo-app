@@ -1,7 +1,9 @@
+import { useState } from 'react'
+import './TodoApp.css'
+
 export default function TodoApp(){
     return (
         <div className="TodoApp">
-            Todo Management Application
             <LoginComponent/>
            {/*<WelcomeComponent/>*/}
         </div>
@@ -9,16 +11,29 @@ export default function TodoApp(){
 }
 
 function LoginComponent(){
+
+    const [username, setUsername] = useState('in28minutes')
+    const [password, setPassword] = useState('dummy')
+
+    function handleUsernameChange(event){
+        setUsername(event.target.value)
+    }
+
+    function handlePasswordChage(event){
+        console.log(event.target.value);
+        setPassword(event.target.value)
+    }
+
     return(
         <div className="Login">
             <div className="LoginForm">
                 <div>
-                    <label>Username</label>
-                    <input type="text" name="username"/>
+                    <label>Username:</label>
+                    <input type="text" name="username" value={username} onChange={handleUsernameChange}/>
                 </div>
                 <div>
-                    <label>Password</label>
-                    <input type="password" name="password"/>
+                    <label>Password:</label>
+                    <input type="password" name="password" value={password} onChange={handlePasswordChage}/>
                 </div>
             </div>
             <div>
