@@ -15,6 +15,7 @@ npx clear-npx-cache
 
 
 troubleshooting-Поиск неисправностей
+paranteses-круглые скобки
 
 git init
 git add README.md
