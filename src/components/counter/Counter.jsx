@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import CounterButton from './CounterButton'
+import Reset from './Reset'
 
 export default function Counter(){
     const [count, setCount] = useState(0)
@@ -11,6 +12,11 @@ export default function Counter(){
     function decrementCounterParentFunction(by){
         setCount(count - by)
     }
+
+    function resetCounterFunction(){
+        setCount(0)
+    }
+
 
  /*   function someMethodInParent(by){
         console.log("parent method called")
@@ -28,6 +34,7 @@ export default function Counter(){
             <CounterButton by={5} 
                 incrementMethod={incrementCounterParentFunction} 
                 decrementMethod={decrementCounterParentFunction}/>
+            <Reset resetMethod={resetCounterFunction}/>   
         </>
     )
 }
