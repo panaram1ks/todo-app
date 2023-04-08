@@ -4,35 +4,13 @@ import './CounterButton.css'
 
 
 
-export default function CounterButton({by, incrementMethod, decrementMethod}){
-
-    const [count, setCount] = useState(0)
-
-
-    function incrementCounterFunction(){
-        setCount(count + by)
-        console.log(count)
-        /*someMethodInParent()*/
-        incrementMethod(by)
-
-        /*state[1](state[0] + 1)
-        console.log(state[0])
-        console.log(state[1])
-        console.log('increment clicked')*/
-    }
-
-    function decrementCounterFunction(){
-        setCount(count - by)
-        console.log(count)
-        decrementMethod(by)
-    }
-
+export default function CounterButton({by, incrementMethod, decrementMethod}){ 
 
     return (
         <div className="CounterButton">    
             <div>
-                <button className="counterButton" onClick={incrementCounterFunction}> +{by} </button>
-                <button className="counterButton" onClick={decrementCounterFunction}> -{by} </button>
+                <button className="counterButton" onClick={() => incrementMethod(by)}> +{by} </button>
+                <button className="counterButton" onClick={() => decrementMethod(by)}> -{by} </button>
             </div>            
         </div>
     )
