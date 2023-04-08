@@ -3,3 +3,8 @@ export default function FirtsComponent(){
       <div className="FirstComponent">FirstComponent</div>
     )
   }
+export function FifthComponent(){
+  return (
+    <div className="FifthComponent">FifthComponent</div>
+  )
+}
