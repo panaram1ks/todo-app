@@ -21,6 +21,18 @@ const buttonStyle = {
     border-width: 5px;
 }
 
+.resetButton {
+    font-size:25px;
+    background-color: rgb(82, 29, 167);
+    width: 200px;
+    margin: 10px;
+    color: white;
+    padding: 15px;
+    border-radius: 30px;
+    border-color: gray;
+    border-width: 5px;
+}
+
 .count {
     font-size: 50px;
     padding: 20px;
