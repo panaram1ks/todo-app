@@ -6,7 +6,6 @@ function LoginComponent(){
 
     const [username, setUsername] = useState('in28minutes')
     const [password, setPassword] = useState('dummy')
-    const [showSuccessMessage, setshowSuccessMessage] = useState(false)
     const [showErrorMessage, setshowErrorMessage] = useState(false)
     const navigate = useNavigate()
     const authContext = useAuth()
@@ -20,51 +19,17 @@ function LoginComponent(){
     }
 
     function handleSubmit(){
-        console.log(username);
-        console.log(password);
-        if(username==='in28minutes' && password==='dummy'){
-            authContext.setAuthenticated(true)
-            console.log('Success');
-            setshowSuccessMessage(true)
-            setshowErrorMessage(false)
+        if(authContext.login(username, password)){
             navigate(`/welcome/${username}`)            
         } else {
-            authContext.setAuthenticated(false)
-            console.log('Authentification');
-            setshowSuccessMessage(false)
             setshowErrorMessage(true)            
         }
     }
 
- /*}   function SuccessMessageComponent() {
-        if(showSuccessMessage){
-            return (
-                <div className='successMessage'>Authenticated Successfully</div>
-            )
-        } else {
-            return null
-        }
-        
-    }
-
-    function ErrorMessageComponent() {
-        if(showErrorMessage){
-            return (
-                <div className='errorMessage'>Authentication Failed. Please check your credentials.</div>
-            )
-        } else {
-            return null
-        }
-        
-    }*/
-
     return(
         <div className="Login">
             <h1>Time to Login</h1>
-            {showSuccessMessage && <div className='successMessage'>Authenticated Successfully</div>}
             {showErrorMessage && <div className='errorMessage'>Authentication Failed. Please check your credentials.</div>}
-            {/*<SuccessMessageComponent/>
-            <ErrorMessageComponent/>*/}
 
             <div className="LoginForm">
                 <div>
