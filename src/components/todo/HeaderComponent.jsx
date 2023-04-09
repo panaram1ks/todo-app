@@ -3,16 +3,13 @@ import { useAuth } from './security/AuthContext'
 
 function HeaderComponent() {
     
-    //const authContext = useContext(AuthContext)
-    //console.log(authContext.number);
     const authContext = useAuth()
     const isAuthenticated = authContext.isAuthenticated
-
-    function logout() {
-        authContext.setAuthenticated(false)
-    }
-
     console.log(authContext)
+
+    function logoutHeader() {
+        authContext.logout()
+    }
 
     return(
         <header className="border-bottom border-light border-5 mb-5 p-2">
@@ -36,7 +33,7 @@ function HeaderComponent() {
                                     {!isAuthenticated && <Link className="nav-link" to="/login">Login</Link>}
                             </li>
                             <li className="nav-item fs-5">
-                                    {isAuthenticated && <Link className="nav-link" to="/logout" onClick={logout}>Logout</Link>}
+                                    {isAuthenticated && <Link className="nav-link" to="/logout" onClick={logoutHeader}>Logout</Link>}
                             </li>
                         </ul>
                     </nav>
