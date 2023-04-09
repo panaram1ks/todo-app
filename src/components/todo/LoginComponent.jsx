@@ -14,7 +14,6 @@ function LoginComponent(){
     }
 
     function handlePasswordChage(event){
-       {/* console.log(event.target.value);*/}
         setPassword(event.target.value)     
     }
 
