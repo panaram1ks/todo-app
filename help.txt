@@ -10,6 +10,7 @@ npx clear-npx-cache
 4) npm install --save react-router-dom    	--- Add a dependency to your project
 
 5) npm install react-router-dom
+6) npm install bootstrap
 
 
 

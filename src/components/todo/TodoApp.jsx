@@ -143,10 +143,10 @@ function ListTodosComponent() {
                 ]
 
     return(
-        <div className="ListTodosComponent(">
+        <div className="container">
             <h1>Things You Want To Do!</h1>
             <div>
-                <table>
+                <table className='table'>
                     <thead>
                         <tr>
                             <td>ID</td>
