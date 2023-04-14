@@ -12,6 +12,8 @@ npx clear-npx-cache
 5) npm install react-router-dom
 6) npm install bootstrap
 
+7) npm install axios
+
 
 
 
