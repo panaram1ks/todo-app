@@ -14,6 +14,8 @@ export default function AuthProvider({children}){
     const [isAuthenticated, setAuthenticated] = useState(false)
     const [username, setUsername] = useState(null)
 
+    const [token, setToken] = useState(null)
+
  /*   function login(username, password) {
         if(username==='in28minutes' && password==='dummy'){
             setAuthenticated(true)
@@ -26,34 +28,41 @@ export default function AuthProvider({children}){
         }
     }*/
 
-    function login(username, password) {
+    async function login(username, password) {
 
         const baToken = 'Basic ' + window.btoa(username + ":" + password)
         console.log(baToken);
 
-        executeBasicAuthenticationService(baToken)
-            .then(response => console.log(response))
-            .catch(error=> console.log(error) )
+        try {
+            const response = await executeBasicAuthenticationService(baToken)
+            /* .then(response => console.log('2: ' + response))
+                .catch(error=> console.log(error) )*/
+            console.log('1: test');
+            console.log(response.status);    
 
-        setAuthenticated(false)    
-
-  /*      if(username == 'in28minutes'){
-            setAuthenticated(true)
-            setUsername(username)
-            return true           
-        } else {
-            setAuthenticated(false)
-            setUsername(null)
-            return false            
-        }*/
+            if(response.status == 200){
+                setAuthenticated(true)
+                setUsername(username)
+                setToken(baToken)
+                return true           
+            } else {
+                logout()
+                return false            
+            }
+        } catch(error){
+            logout()
+            return false  
+        }
     }
 
     function logout() {
         setAuthenticated(false)
+        setUsername(null)
+        setToken(null)
     }
 
     return (
-        <AuthContext.Provider value={ {isAuthenticated, login, logout, username} }>
+        <AuthContext.Provider value={ {isAuthenticated, login, logout, username, token} }>
             {children}
         </AuthContext.Provider>
     )
