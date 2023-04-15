@@ -1,6 +1,6 @@
 import { useParams,Link } from 'react-router-dom'
 import { useState } from 'react';
-import { retrieveHelloWorldBean } from './api/HelloWorldApiService';
+import { retrieveHelloWorldBean,retrieveHelloWorldPathVariable } from './api/HelloWorldApiService';
 
 function WelcomeComponent() {
 
@@ -15,6 +15,14 @@ function WelcomeComponent() {
     function callHelloWorldRestApi(){
         console.log('called');
         retrieveHelloWorldBean()
+            .then( (response)=> successfulResponse(response) )
+            .catch( (error) => errorResponse(error) )
+            .finally( () => console.log('cleanup') )
+    }
+
+    function callHelloWorldPathVariableRestApi(){
+        console.log('called');
+        retrieveHelloWorldPathVariable('ranga')
             .then( (response)=> successfulResponse(response) )
             .catch( (error) => errorResponse(error) )
             .finally( () => console.log('cleanup') )
@@ -37,7 +45,10 @@ function WelcomeComponent() {
                 Manage your todos. <Link to="/todos">Go to</Link>
             </div>
             <div>
-                <button className='btn btn-success m-5' onClick={callHelloWorldRestApi}>Call Hellow World</button>
+                <button className='btn btn-success m-2' onClick={callHelloWorldRestApi}>Call Hellow World</button>
+            </div>
+            <div>
+                <button className='btn btn-success m-2' onClick={callHelloWorldPathVariableRestApi}>HelloWorldPathWariable</button>
             </div>
             <div className="text-info">{message}</div>
         </div>
