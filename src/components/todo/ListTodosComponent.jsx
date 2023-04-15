@@ -5,15 +5,15 @@ import { useNavigate } from "react-router-dom"
 
 function ListTodosComponent() {
     
-    const today = new Date()
-    const targetDate = new Date(  today.getDay(),today.getMonth, today.getFullYear+12)
+    //const today = new Date()
+    //const targetDate = new Date(  today.getDay(),today.getMonth, today.getFullYear+12)
 
     const authContext = useAuth()
     const username = authContext.username
 
     const [todos, setTodos] = useState([])
     const [message, setMessage] = useState(null)
-    
+
     const navigate = useNavigate()
 
     useEffect(() => refreshTodos(), [])
@@ -28,7 +28,7 @@ function ListTodosComponent() {
     }
     
     function deleteTodo(id){
-        console.log('delete called ' + id);
+        //console.log('delete called ' + id);
         deleteTodoApi(username, id)
             .then(
                 // 1: Display message
@@ -42,8 +42,12 @@ function ListTodosComponent() {
     }
 
     function updateTodo(id){
-        console.log('update called ' + id);
+        //console.log('update called ' + id);
         navigate(`/todo/${id}`)
+    }
+
+    function addNewTodo(){
+        navigate(`/todo/-1`)
     }
 
     return(
@@ -76,8 +80,9 @@ function ListTodosComponent() {
                             )
                         }                       
                     </tbody>
-                </table>
+                </table>                
             </div>
+            <div className="btn btn-success m-3" onClick={addNewTodo}>Add new Todo</div>
         </div>
     )
 }
