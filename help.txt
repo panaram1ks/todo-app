@@ -12,7 +12,12 @@ npx clear-npx-cache
 5) npm install react-router-dom
 6) npm install bootstrap
 
+//work with requests
 7) npm install axios
+
+//work with forms
+8) npm install formik
+9) npm install moment
 
 
 
