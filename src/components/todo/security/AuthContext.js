@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-import { executeBasicAuthenticationService } from "../api/HelloWorldApiService";
+import { executeJWTAuthenticationService } from "../api/AuthenticationApiService";
 import { apiClient } from "../api/ApiClient";
 
 // 1: Create a Context
@@ -29,15 +29,13 @@ export default function AuthProvider({children}){
         }
     }*/
 
-    async function login(username, password) {
+ /*   async function login(username, password) {
 
         const baToken = 'Basic ' + window.btoa(username + ":" + password)
         console.log(baToken);
 
         try {
             const response = await executeBasicAuthenticationService(baToken)
-            /* .then(response => console.log('2: ' + response))
-                .catch(error=> console.log(error) )*/
             console.log('1: test');
             console.log(response.status);    
 
@@ -51,6 +49,40 @@ export default function AuthProvider({children}){
                     (config) => {
                         console.log('intercepting and adding a token');
                         config.headers.Authorization = baToken
+                        return config
+                    }
+                )
+
+                return true           
+            } else {
+                logout()
+                return false            
+            }
+        } catch(error){
+            logout()
+            return false  
+        }
+    }*/
+
+    async function login(username, password) {
+
+        try {
+            const response = await executeJWTAuthenticationService(username, password)
+            console.log(response.status);    
+
+            if(response.status == 200){
+
+                const jwtToken = 'Bearer ' + response.data.token
+                
+                setAuthenticated(true)
+                setUsername(username)
+                setToken(jwtToken)
+
+                //All request are interceptered here and add Header Authorization with token to each of API calls
+                apiClient.interceptors.request.use(
+                    (config) => {
+                        console.log('intercepting and adding a token');
+                        config.headers.Authorization = jwtToken
                         return config
                     }
                 )
